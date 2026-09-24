@@ -22,3 +22,6 @@
 [submodule "pctang"]
 	path = pctang
 	url = ../pctang.git
+[submodule "gbtang"]
+	path = gbtang
+	url = ../GBTang.git

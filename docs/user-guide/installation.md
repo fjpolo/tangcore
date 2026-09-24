@@ -58,6 +58,7 @@ NESTang/SNESTang   |
 ├── 📁 snes/         # .smc/.sfc files
 ├── 📁 gba/
 │    └── 🗎 gba_bios.bin  # GBA BIOS
+├── 📁 gb/           # .gb/.gbc files
 ├── 📁 genesis/      # .bin/.md files
 ├── 📁 sms/          # .sms files
 └── 📁 pc/           # .img floppy images

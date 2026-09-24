@@ -13,6 +13,7 @@ TangCore is a comprehensive FPGA gaming distribution that brings classic gaming 
 - **NESTang** - Nintendo Entertainment System
 - **SNESTang** - Super Nintendo Entertainment System
 - **GBATang** - Game Boy Advance
+- **GBTang** - Game Boy / Game Boy Color
 - **MDTang** - Sega Genesis/Mega Drive
 - **SMSTang** - Sega Master System
 

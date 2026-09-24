@@ -33,6 +33,11 @@ Please [file an issue](https://github.com/nand2mario/tangcore/issues) if you run
   - Open source BIOS included
   - Full 32MB gamepak support
 
+- **[GBTang](https://github.com/fjpolo/GBTang/)** - Game Boy / Game Boy Color
+  - Cycle-accurate Game Boy & GBC emulation via VerilogBoy
+  - 720p HDMI output with integer scaling
+  - SD card streaming ROM loader with OSD menu
+
 - **[MDTang](https://github.com/nand2mario/mdtang/)** - Sega Genesis/Mega Drive
   - Accurate Genesis/Mega Drive emulation
 

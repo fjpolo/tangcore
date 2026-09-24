@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 if "%1"=="" (
-    echo Usage: build.bat [firmware^|nestang^|snestang^|gbatang^|mdtang^|all^|package]
+    echo Usage: build.bat [firmware^|nestang^|snestang^|gbatang^|gbtang^|mdtang^|smstang^|pctang^|monitor^|all^|package]
     exit /b 1
 )
 
@@ -19,6 +19,8 @@ if /i "%1"=="firmware" (
     call :do_snestang
 ) else if /i "%1"=="gbatang" (
     call :do_gbatang
+) else if /i "%1"=="gbtang" (
+    call :do_gbtang
 ) else if /i "%1"=="mdtang" (
     call :do_mdtang
 ) else if /i "%1"=="smstang" (
@@ -32,6 +34,7 @@ if /i "%1"=="firmware" (
     call :do_nestang
     call :do_snestang
     call :do_gbatang
+    call :do_gbtang
     call :do_mdtang
     call :do_smstang
     call :do_pctang
@@ -39,7 +42,7 @@ if /i "%1"=="firmware" (
     call :do_package
 ) else (
     echo Invalid command: %1
-    echo Valid commands are: firmware, nestang, snestang, gbatang, mdtang, all, package
+    echo Valid commands are: firmware, nestang, snestang, gbatang, gbtang, mdtang, smstang, pctang, monitor, all, package
     exit /b 1
 )
 
@@ -93,6 +96,27 @@ if errorlevel 1 (
     set /a ERROR_COUNT+=1
 )
 cd %BUILD_ROOT%
+exit /b
+
+:do_gbtang
+echo Building GBTang...
+if exist "gbtang\buildall.bat" (
+    cd gbtang
+    call buildall.bat
+    cd %BUILD_ROOT%
+) else if exist "..\buildall.bat" (
+    cd ..
+    call buildall.bat
+    cd %BUILD_ROOT%
+) else (
+    echo Error: GBTang directory not found
+    set /a ERROR_COUNT+=1
+    exit /b 1
+)
+if errorlevel 1 (
+    echo Error building GBTang
+    set /a ERROR_COUNT+=1
+)
 exit /b
 
 :do_mdtang
@@ -176,6 +200,16 @@ copy /y "gbatang\impl\pnr\gbatang_console60k.bin" "build\cores\console60k\gbatan
 copy /y "gbatang\impl\pnr\gbatang_console138k.bin" "build\cores\console138k\gbatang.bin"
 if errorlevel 1 (
     echo Warning: Some GBATang files could not be copied
+    set /a ERROR_COUNT+=1
+)
+
+echo Copy GBTang files
+if exist "gbtang\impl\pnr\gbtang_console60k.bin" (
+    copy /y "gbtang\impl\pnr\gbtang_console60k.bin" "build\cores\console60k\gbtang.bin"
+) else if exist "..\impl\pnr\gbtang_console60k.bin" (
+    copy /y "..\impl\pnr\gbtang_console60k.bin" "build\cores\console60k\gbtang.bin"
+) else (
+    echo Warning: Some GBTang files could not be copied
     set /a ERROR_COUNT+=1
 )
 
